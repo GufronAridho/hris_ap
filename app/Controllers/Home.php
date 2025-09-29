@@ -8,4 +8,12 @@ class Home extends BaseController
     {
         return view('welcome_message');
     }
+
+    public function trial()
+    {
+        return view('trial', [
+            'title' => 'Dashboard',
+            'username' => 'Gufron Aridho'
+        ]);
+    }
 }
