@@ -11,9 +11,36 @@ class Home extends BaseController
 
     public function trial()
     {
-        return view('trial', [
+        return view('Home/trial', [
+            'title' => 'Trial',
+        ]);
+    }
+
+    public function home()
+    {
+        return view('Home/home', [
+            'title' => 'Home',
+        ]);
+    }
+
+    public function dashboard()
+    {
+        return view('Home/dashboard', [
             'title' => 'Dashboard',
-            'username' => 'Gufron Aridho'
+        ]);
+    }
+
+    public function privacy_policy()
+    {
+        return view('Home/privacy_policy', [
+            'title' => 'Privacy Policy',
+        ]);
+    }
+
+    public function report()
+    {
+        return view('Home/report', [
+            'title' => 'Report',
         ]);
     }
 }

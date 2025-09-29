@@ -1,10 +1,18 @@
+<?php
+
+use Config\Menu;
+
+$module = service('uri')->getSegment(1);
+$menu_items = Menu::$menus[$module] ?? [];
+
+?>
 <!doctype html>
 <html lang="en">
 <!--begin::Head-->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE v4 | Dashboard</title>
+    <title><?= $title ?? "My App" ?></title>
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="color-scheme" content="light dark" />
@@ -71,119 +79,185 @@
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
         <!--begin::Header-->
-        <nav class="app-header navbar navbar-expand bg-body">
-            <!--begin::Container-->
-            <div class="container-fluid">
-                <!--begin::Start Navbar Links-->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
-                            <i class="fas fa-bars"></i> <!-- Sidebar Toggle -->
-                        </a>
-                    </li>
-                </ul>
-                <!--end::Start Navbar Links-->
+        <nav class="app-header navbar navbar-expand-md navbar-dark shadow-sm m-0 p-0">
+            <div class="container-fluid d-flex flex-column px-0">
+                <!-- Top Nav -->
+                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between w-100 py-2 px-3 top_nav_row-black">
+                    <!-- Left Section -->
+                    <div class="d-none d-md-flex align-items-center mb-2 mb-md-0">
+                        <img src="<?= base_url('dist/adminLte/assets/img/AdminLTELogo.png'); ?>" alt="Company Logo" class="me-2" style="height: 40px;">
+                        <span class="fw-bold fs-5 text-white">Your Company Name</span>
+                    </div>
 
-                <!--begin::End Navbar Links-->
-                <ul class="navbar-nav ms-auto">
-                    <!--begin::Fullscreen Toggle-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-lte-toggle="fullscreen">
-                            <i data-lte-icon="maximize" class="fas fa-expand"></i>
-                            <i data-lte-icon="minimize" class="fas fa-compress" style="display: none"></i>
-                        </a>
-                    </li>
-                    <!--end::Fullscreen Toggle-->
+                    <!-- Middle Section -->
+                    <div class="d-none d-md-flex align-items-center mb-2 mb-md-0">
+                        <i class="fas fa-cubes me-2 fa-2x text-white"></i>
+                        <div class="d-flex flex-column">
+                            <span class="fw-semibold fs-5 text-white">HRiS</span>
+                            <span class="small text-light">Human Resource Information System</span>
+                        </div>
+                    </div>
 
-                    <!--begin::User Menu Dropdown-->
-                    <li class="nav-item dropdown user-menu">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img
-                                src="<?= base_url('dist/adminLte/assets/img/user2-160x160.jpg'); ?>"
-                                class="user-image rounded-circle shadow"
-                                alt="User Image" />
-                            <span class="d-none d-md-inline">Gufron Aridho</span>
+                    <!-- Right Section -->
+                    <div class="d-flex align-items-center flex-wrap">
+                        <span class="me-2 text-white">Gufron Aridho</span>
+                        <i class="fas fa-user-circle fa-2x text-warning me-2"></i>
+
+                        <div class="dropdown me-2">
+                            <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="fas fa-cog"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-key me-2"></i>Change Password</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user-cog me-2"></i>Profile Settings</a></li>
+                            </ul>
+                        </div>
+
+                        <a href="#" class="btn btn-sm btn-outline-info me-2">Help</a>
+
+                        <a href="#" class="btn btn-sm btn-outline-danger">
+                            <i class="fas fa-sign-out-alt"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end p-2" style="min-width: 120px !important; max-width: 200px;">
-                            <!-- Change Password -->
-                            <li>
-                                <a href="#" class="dropdown-item py-1">
-                                    <i class="fas fa-key me-2"></i> Change password
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider my-1">
-                            </li>
-                            <!-- Sign Out -->
-                            <li>
-                                <a href="#" class="dropdown-item text-danger py-1">
-                                    <i class="fas fa-sign-out-alt me-2"></i> Sign Out
-                                </a>
-                            </li>
+
+                    </div>
+                </div>
+
+                <!-- Bottom Nav -->
+                <div class="d-flex align-items-center justify-content-between w-100 py-2 px-3 bottom_nav_row-purple">
+                    <button class="btn btn-sm btn-outline-light d-md-none rounded" type="button" data-bs-toggle="collapse" data-bs-target="#bottomNavMenu" aria-controls="bottomNavMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <!-- Menu -->
+                    <div class="collapse d-md-flex flex-grow-1" id="bottomNavMenu">
+                        <ul class="nav w-100 ">
+                            <?php foreach ($menu_items as $item): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white <?= (uri_string() == $item['url']) ? 'active fw-bold border-bottom border-white' : 'text-light' ?>" href="<?= base_url($item['url']) ?>">
+                                        <strong>
+                                            <?= $item['label'] ?>
+                                        </strong>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
-                    </li>
-                    <!--end::User Menu Dropdown-->
-                </ul>
-                <!--end::End Navbar Links-->
+                    </div>
+                </div>
             </div>
-            <!--end::Container-->
         </nav>
-
         <!--end::Header-->
-        <!--begin::Sidebar-->
-        <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-            <!--begin::Sidebar Brand-->
-            <div class="sidebar-brand">
-                <!--begin::Brand Link-->
-                <a href="./index.html" class="brand-link">
-                    <!--begin::Brand Image-->
-                    <img
-                        src="<?php echo base_url('dist/adminLte/assets/img/AdminLTELogo.png'); ?>"
-                        alt="AdminLTE Logo"
-                        class="brand-image opacity-75 shadow" />
-                    <!--end::Brand Image-->
-                    <!--begin::Brand Text-->
-                    <span class="brand-text fw-light">AdminLTE 4</span>
-                    <!--end::Brand Text-->
-                </a>
-                <!--end::Brand Link-->
-            </div>
-            <!--end::Sidebar Brand-->
-            <!--begin::Sidebar Wrapper-->
-            <div class="sidebar-wrapper">
-                <nav class="mt-2">
-                    <!--begin::Sidebar Menu-->
 
-
-
-                    <!--end::Sidebar Menu-->
-                </nav>
-            </div>
-
-            <!--end::Sidebar Wrapper-->
-        </aside>
-        <!--end::Sidebar-->
-
-        <main>
-            <?= $this->renderSection('content') ?>
-        </main>
+        <!--begin::Main-->
+        <?= $this->renderSection('content') ?>
+        <!--end::Main-->
 
         <!--begin::Footer-->
-        <footer class="app-footer">
-            <!--begin::To the end-->
-            <div class="float-end d-none d-sm-inline">Anything you want</div>
-            <!--end::To the end-->
-            <!--begin::Copyright-->
-            <strong>
-                Copyright &copy; 2014-2025&nbsp;
-                <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
-            </strong>
-            All rights reserved.
-            <!--end::Copyright-->
+        <footer class="app-footer top_nav_row-black d-flex justify-content-between align-items-center px-3 py-1">
+            <!-- Left content -->
+            <div>
+                <strong>Copyright &copy; 2014-2025&nbsp;</strong> All rights reserved.
+            </div>
+
+            <!-- Right content -->
+            <div class="d-none d-sm-block">
+                Anything you want
+            </div>
         </footer>
+
         <!--end::Footer-->
     </div>
     <!--end::App Wrapper-->
+    <style>
+        .nav-link.active {
+            background-color: #7030a0 !important;
+            color: #fff !important;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            /* needed for animation */
+        }
+
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 5px;
+            background-color: #efb11f;
+            border-radius: 6px;
+        }
+
+        .top_nav_row-black {
+            background-color: #1f1f1f;
+            color: #efb11f;
+        }
+
+        .top_nav_row-black .nav-link,
+        .top_nav_row-black span,
+        .top_nav_row-black i,
+        .top_nav_row-black .dropdown-item {
+            color: #efb11f !important;
+        }
+
+        .top_nav_row-black .dropdown-menu {
+            background-color: #1f1f1f;
+        }
+
+        .top_nav_row-black .dropdown-item:hover {
+            background-color: #1a1a1a;
+        }
+
+        .bottom_nav_row-purple {
+            background-color: #800080;
+            color: #fff;
+        }
+
+        .bottom_nav_row-purple .nav-link,
+        .bottom_nav_row-purple span,
+        .bottom_nav_row-purple i,
+        .bottom_nav_row-purple .btn {
+            color: #fff !important;
+        }
+
+        .bottom_nav_row-purple .btn-outline-secondary,
+        .bottom_nav_row-purple .btn-outline-info,
+        .bottom_nav_row-purple .btn-outline-danger {
+            border-color: #fff;
+        }
+
+        .bottom_nav_row-purple .nav-link.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .bottom_nav_row-purple {
+            margin-top: -1px;
+        }
+
+        nav.app-header {
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .nav-link:hover {
+            color: #ffd700 !important;
+            transition: color 0.3s;
+        }
+
+        .bottom_nav_row-purple .nav-link.active {
+            border-bottom: 3px solid #fff;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #fff;
+            color: #000 !important;
+        }
+
+        .app-footer {
+            min-height: 0;
+        }
+    </style>
     <!--begin::Script-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script
@@ -210,27 +284,6 @@
     <script src="<?= base_url('dist/plugins/DataTables/datatables.min.js') ?>"></script>
     <script src="<?= base_url('dist/plugins/select2-4.0.13/js/select2.full.min.js') ?>"></script>
     <script src="<?= base_url('dist/plugins/sweetalert2/dist/sweetalert2.all.min.js') ?>"></script>
-
-    <script>
-        const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
-        const Default = {
-            scrollbarTheme: 'os-theme-light',
-            scrollbarAutoHide: 'leave',
-            scrollbarClickScroll: true,
-        };
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-            if (sidebarWrapper && OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined) {
-                OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
-                    scrollbars: {
-                        theme: Default.scrollbarTheme,
-                        autoHide: Default.scrollbarAutoHide,
-                        clickScroll: Default.scrollbarClickScroll,
-                    },
-                });
-            }
-        });
-    </script>
 
     <?= $this->renderSection('script'); ?>
     <!--end::Script-->
