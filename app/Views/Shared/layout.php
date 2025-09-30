@@ -79,64 +79,63 @@ $menu_items = Menu::$menus[$module] ?? [];
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
         <!--begin::Header-->
-        <nav class="app-header navbar navbar-expand-md navbar-dark shadow-sm m-0 p-0">
-            <div class="container-fluid d-flex flex-column px-0">
-                <!-- Top Nav -->
-                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between w-100 py-2 px-3 top_nav_row-black">
-                    <!-- Left Section -->
+        <nav class="app-header navbar navbar-expand-md navbar-dark shadow-sm">
+            <div class="container-fluid flex-column px-0">
+
+                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between w-100 py-2 px-3 layout-top">
+
                     <div class="d-none d-md-flex align-items-center mb-2 mb-md-0">
-                        <img src="<?= base_url('dist/adminLte/assets/img/AdminLTELogo.png'); ?>" alt="Company Logo" class="me-2" style="height: 40px;">
-                        <span class="fw-bold fs-5 text-white">Your Company Name</span>
+                        <a href="<?= base_url("home/index"); ?>" style="text-decoration: none;">
+                            <img src="<?= base_url('dist/adminLte/assets/img/AdminLTELogo.png'); ?>" alt="Logo" class="me-2" style="height: 42px;">
+                            <span class="fw-bold fs-5 text-warning">Your Company</span>
+                        </a>
                     </div>
 
-                    <!-- Middle Section -->
                     <div class="d-none d-md-flex align-items-center mb-2 mb-md-0">
                         <i class="fas fa-cubes me-2 fa-2x text-white"></i>
                         <div class="d-flex flex-column">
-                            <span class="fw-semibold fs-5 text-white">HRiS</span>
-                            <span class="small text-light">Human Resource Information System</span>
+                            <span class="fw-semibold fs-5 text-warning">HRiS</span>
+                            <small class="text-warning">Human Resource Information System</small>
                         </div>
                     </div>
 
-                    <!-- Right Section -->
                     <div class="d-flex align-items-center flex-wrap">
-                        <span class="me-2 text-white">Gufron Aridho</span>
-                        <i class="fas fa-user-circle fa-2x text-warning me-2"></i>
+                        <span class="me-1 text-warning fw-semibold">Gufron Aridho</span>
+                        <i class="fas fa-user-circle fa-2x text-white me-2"></i>
 
                         <div class="dropdown me-2">
-                            <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
-                                <i class="fas fa-cog"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-key me-2"></i>Change Password</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-user-cog me-2"></i>Profile Settings</a></li>
+                            <button class="btn btn-sm btn-outline-warning rounded-pill layout-btn" data-bs-toggle="dropdown">
+                                <i class="fas fa-cog"></i> Settings
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end layout-dropdown">
+                                <li><a class="dropdown-item layout-dropdown-item" href="#"><i class="fas fa-key me-2"></i>Change Password</a></li>
+                                <li><a class="dropdown-item layout-dropdown-item" href="#"><i class="fas fa-user-cog me-2"></i>Profile Settings</a></li>
                             </ul>
                         </div>
 
-                        <a href="#" class="btn btn-sm btn-outline-info me-2">Help</a>
-
-                        <a href="#" class="btn btn-sm btn-outline-danger">
-                            <i class="fas fa-sign-out-alt"></i>
+                        <a href="#" class="btn btn-sm btn-outline-warning rounded-pill me-2 layout-btn">
+                            <i class="fas fa-question-circle me-1"></i> Help
                         </a>
 
+                        <a href="#" class="btn btn-sm btn-outline-warning rounded-pill layout-btn">
+                            <i class="fas fa-sign-out-alt me-1"></i> Logout
+                        </a>
                     </div>
                 </div>
 
-                <!-- Bottom Nav -->
-                <div class="d-flex align-items-center justify-content-between w-100 py-2 px-3 bottom_nav_row-purple">
-                    <button class="btn btn-sm btn-outline-light d-md-none rounded" type="button" data-bs-toggle="collapse" data-bs-target="#bottomNavMenu" aria-controls="bottomNavMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="d-flex align-items-center justify-content-between w-100 py-2 px-3 layout-bottom">
+                    <button class="btn btn-sm btn-outline-light d-md-none rounded" type="button" data-bs-toggle="collapse" data-bs-target="#bottomNavMenu">
                         <i class="fas fa-bars"></i>
                     </button>
-
-                    <!-- Menu -->
                     <div class="collapse d-md-flex flex-grow-1" id="bottomNavMenu">
-                        <ul class="nav w-100 ">
+                        <ul class="nav w-100 justify-content-center">
                             <?php foreach ($menu_items as $item): ?>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white <?= (uri_string() == $item['url']) ? 'active fw-bold border-bottom border-white' : 'text-light' ?>" href="<?= base_url($item['url']) ?>">
-                                        <strong>
-                                            <?= $item['label'] ?>
-                                        </strong>
+                                <li class="nav-item mx-1">
+                                    <a class="nav-link layout-link <?= (uri_string() == $item['url']) ? 'active' : '' ?>" href="<?= base_url($item['url']) ?>">
+                                        <?php if (!empty($item['icon'])): ?>
+                                            <i class="<?= $item['icon'] ?>"></i>
+                                        <?php endif; ?>
+                                        <?= $item['label'] ?>
                                     </a>
                                 </li>
                             <?php endforeach; ?>
@@ -146,116 +145,106 @@ $menu_items = Menu::$menus[$module] ?? [];
             </div>
         </nav>
         <!--end::Header-->
-
         <!--begin::Main-->
         <?= $this->renderSection('content') ?>
         <!--end::Main-->
-
         <!--begin::Footer-->
-        <footer class="app-footer top_nav_row-black d-flex justify-content-between align-items-center px-3 py-1">
-            <!-- Left content -->
+        <footer class="app-footer layout-footer d-flex justify-content-between align-items-center px-3 py-1">
             <div>
                 <strong>Copyright &copy; 2014-2025&nbsp;</strong> All rights reserved.
             </div>
-
-            <!-- Right content -->
             <div class="d-none d-sm-block">
                 Anything you want
             </div>
         </footer>
-
         <!--end::Footer-->
     </div>
     <!--end::App Wrapper-->
     <style>
-        .nav-link.active {
-            background-color: #7030a0 !important;
-            color: #fff !important;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            /* needed for animation */
+        .app-header.navbar {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
         }
 
-        .nav-link.active::after {
+        .layout-top {
+            background: #1e1e1f;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .layout-bottom {
+            background: #800080;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .layout-link {
+            color: #f8f9fa !important;
+            font-weight: 500;
+            border-radius: 12px;
+            padding: 8px 16px;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .layout-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffd700 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .layout-link.active {
+            background-color: #7030a0 !important;
+            color: #fff !important;
+            font-weight: 600;
+        }
+
+        .layout-link.active::after {
             content: "";
             position: absolute;
             bottom: 0;
             left: 10%;
             width: 80%;
-            height: 5px;
-            background-color: #efb11f;
-            border-radius: 6px;
+            height: 4px;
+            background: #efb11f;
+            border-radius: 4px;
+            box-shadow: 0 0 6px #efb11f;
         }
 
-        .top_nav_row-black {
-            background-color: #1f1f1f;
-            color: #efb11f;
+        .layout-dropdown {
+            border-radius: 12px;
+            background-color: #2a2a2a;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-        .top_nav_row-black .nav-link,
-        .top_nav_row-black span,
-        .top_nav_row-black i,
-        .top_nav_row-black .dropdown-item {
+        .layout-dropdown-item {
             color: #efb11f !important;
+            transition: background 0.2s;
         }
 
-        .top_nav_row-black .dropdown-menu {
-            background-color: #1f1f1f;
-        }
-
-        .top_nav_row-black .dropdown-item:hover {
-            background-color: #1a1a1a;
-        }
-
-        .bottom_nav_row-purple {
-            background-color: #800080;
-            color: #fff;
-        }
-
-        .bottom_nav_row-purple .nav-link,
-        .bottom_nav_row-purple span,
-        .bottom_nav_row-purple i,
-        .bottom_nav_row-purple .btn {
-            color: #fff !important;
-        }
-
-        .bottom_nav_row-purple .btn-outline-secondary,
-        .bottom_nav_row-purple .btn-outline-info,
-        .bottom_nav_row-purple .btn-outline-danger {
-            border-color: #fff;
-        }
-
-        .bottom_nav_row-purple .nav-link.active {
-            font-weight: bold;
-            text-decoration: underline;
-        }
-
-        .bottom_nav_row-purple {
-            margin-top: -1px;
-        }
-
-        nav.app-header {
-            padding-bottom: 0;
-            margin-bottom: 0;
-        }
-
-        .nav-link:hover {
+        .layout-dropdown-item:hover {
+            background-color: #3a3a3a;
             color: #ffd700 !important;
-            transition: color 0.3s;
         }
 
-        .bottom_nav_row-purple .nav-link.active {
-            border-bottom: 3px solid #fff;
+        .layout-btn {
+            border-radius: 20px;
+            transition: all 0.3s;
         }
 
-        .btn-outline-light:hover {
-            background-color: #fff;
-            color: #000 !important;
+        .layout-btn:hover {
+            background-color: #ffd700;
+            color: #1e1e1f !important;
+            box-shadow: 0 0 8px #ffd700;
         }
 
-        .app-footer {
+        .layout-footer {
             min-height: 0;
+        }
+
+        .app-main {
+            background-color: #f2f0f8;
+            padding: 15px;
+            color: #2a2a2a;
         }
     </style>
     <!--begin::Script-->

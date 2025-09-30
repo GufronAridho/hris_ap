@@ -4,10 +4,10 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
-    public function index(): string
-    {
-        return view('welcome_message');
-    }
+    // public function index(): string
+    // {
+    //     return view('welcome_message');
+    // }
 
     public function trial()
     {
@@ -16,9 +16,9 @@ class Home extends BaseController
         ]);
     }
 
-    public function home()
+    public function index()
     {
-        return view('Home/home', [
+        return view('Home/index', [
             'title' => 'Home',
         ]);
     }
