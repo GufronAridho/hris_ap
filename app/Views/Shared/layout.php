@@ -21,13 +21,6 @@ $menu_items = Menu::$menus[$module] ?? [];
     <!--end::Accessibility Meta Tags-->
     <!--begin::Primary Meta Tags-->
     <meta name="title" content="<?php echo isset($title) ? $title : "My App"; ?>" />
-    <meta name="author" content="ColorlibHQ" />
-    <meta
-        name="description"
-        content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS. Fully accessible with WCAG 2.1 AA compliance." />
-    <meta
-        name="keywords"
-        content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard, accessible admin panel, WCAG compliant" />
     <!--end::Primary Meta Tags-->
     <!--begin::Accessibility Features-->
     <!-- Skip links will be dynamically added by accessibility.js -->
@@ -117,7 +110,7 @@ $menu_items = Menu::$menus[$module] ?? [];
                             <i class="fas fa-question-circle me-1"></i> Help
                         </a>
 
-                        <a href="#" class="btn btn-sm btn-outline-warning rounded-pill layout-btn">
+                        <a href="<?= base_url('auth/index') ?>" class="btn btn-sm btn-outline-warning rounded-pill layout-btn">
                             <i class="fas fa-sign-out-alt me-1"></i> Logout
                         </a>
                     </div>
@@ -133,7 +126,7 @@ $menu_items = Menu::$menus[$module] ?? [];
                                 <li class="nav-item mx-1">
                                     <a class="nav-link layout-link <?= (uri_string() == $item['url']) ? 'active' : '' ?>" href="<?= base_url($item['url']) ?>">
                                         <?php if (!empty($item['icon'])): ?>
-                                            <i class="<?= $item['icon'] ?>"></i>
+                                            <i class="<?= $item['icon'] ?> layout-icon"></i>
                                         <?php endif; ?>
                                         <?= $item['label'] ?>
                                     </a>
@@ -149,14 +142,14 @@ $menu_items = Menu::$menus[$module] ?? [];
         <?= $this->renderSection('content') ?>
         <!--end::Main-->
         <!--begin::Footer-->
-        <footer class="app-footer layout-footer d-flex justify-content-between align-items-center px-3 py-1">
+        <!-- <footer class="app-footer layout-footer d-flex justify-content-between align-items-center px-3 py-1">
             <div>
                 <strong>Copyright &copy; 2014-2025&nbsp;</strong> All rights reserved.
             </div>
             <div class="d-none d-sm-block">
                 Anything you want
             </div>
-        </footer>
+        </footer> -->
         <!--end::Footer-->
     </div>
     <!--end::App Wrapper-->
@@ -237,13 +230,8 @@ $menu_items = Menu::$menus[$module] ?? [];
             box-shadow: 0 0 8px #ffd700;
         }
 
-        .layout-footer {
-            min-height: 0;
-        }
-
         .app-main {
-            background-color: #f2f0f8;
-            padding: 15px;
+            background-color: #ffd8ffff;
             color: #2a2a2a;
         }
     </style>
