@@ -7,7 +7,7 @@
             <div class="row g-4 justify-content-center">
 
                 <div class="col-md-4">
-                    <a href="<?= base_url("recruitment/index"); ?>" class="card-link">
+                    <a href="<?= base_url("recruitment/summary"); ?>" class="card-link">
                         <div class="card gradient-card card-recruitment">
                             <div class="card-body icon-container">
                                 <i class="fas fa-user-plus icon-large"></i>
@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="<?= base_url("recruitment/index"); ?>" class="card-link">
+                    <a href="<?= base_url("onboarding/summary"); ?>" class="card-link">
                         <div class="card gradient-card card-onboarding">
                             <div class="card-body icon-container">
                                 <i class="fas fa-handshake icon-large"></i>
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="<?= base_url("recruitment/index"); ?>" class="card-link">
+                    <a href="<?= base_url("recruitment/summary"); ?>" class="card-link">
                         <div class="card gradient-card card-employee">
                             <div class="card-body icon-container">
                                 <i class="fas fa-id-badge icon-large"></i>
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="<?= base_url("recruitment/index"); ?>" class="card-link">
+                    <a href="<?= base_url("recruitment/summary"); ?>" class="card-link">
                         <div class="card gradient-card card-payroll">
                             <div class="card-body icon-container">
                                 <i class="fas fa-money-bill-wave icon-large"></i>
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="<?= base_url("recruitment/index"); ?>" class="card-link">
+                    <a href="<?= base_url("recruitment/summary"); ?>" class="card-link">
                         <div class="card gradient-card card-timesheet">
                             <div class="card-body icon-container">
                                 <i class="fas fa-clock icon-large"></i>
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="<?= base_url("recruitment/index"); ?>" class="card-link">
+                    <a href="<?= base_url("recruitment/summary"); ?>" class="card-link">
                         <div class="card gradient-card card-performance">
                             <div class="card-body icon-container">
                                 <i class="fas fa-chart-line icon-large"></i>

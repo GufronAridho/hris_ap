@@ -12,14 +12,18 @@ class Menu
             ['label' => 'Report', 'url' => 'home/report', 'icon' => 'fas fa-file-alt'],
         ],
         'recruitment' => [
-            ['label' => 'Home', 'url' => 'recruitment/index', 'icon' => 'fas fa-home'],
+            ['label' => 'Home', 'url' => 'home/index', 'icon' => 'fas fa-home'],
             ['label' => 'Summary', 'url' => 'recruitment/summary', 'icon' => 'fas fa-chart-pie'],
             ['label' => 'Candidate', 'url' => 'recruitment/candidate', 'icon' => 'fas fa-user-friends'],
             ['label' => 'Interview', 'url' => 'recruitment/interview', 'icon' => 'fas fa-comments'],
         ],
         'onboarding' => [
-            ['label' => 'Item 1', 'url' => 'module3/item1', 'icon' => 'fas fa-box'],
-            ['label' => 'Item 2', 'url' => 'module3/item2', 'icon' => 'fas fa-box-open'],
+            ['label' => 'Home', 'url' => 'home/index', 'icon' => 'fas fa-home'],
+            ['label' => 'Summary', 'url' => 'onboarding/summary', 'icon' => 'fas fa-chart-pie'],
+            ['label' => 'Profile', 'url' => 'onboarding/profile', 'icon' => 'fas fa-user'],
+            ['label' => 'Document Checklist', 'url' => 'onboarding/document_checklist', 'icon' => 'fas fa-file-alt'],
+            ['label' => 'IT Checklist', 'url' => 'onboarding/it_checklist', 'icon' => 'fas fa-desktop'],
+            ['label' => 'Onboarding Task', 'url' => 'onboarding/onboarding_task', 'icon' => 'fas fa-tasks'],
         ],
         'module4' => [
             ['label' => 'Page A', 'url' => 'module4/pagea', 'icon' => 'fas fa-file'],

@@ -231,7 +231,7 @@ $menu_items = Menu::$menus[$module] ?? [];
         }
 
         .app-main {
-            background-color: #ffd8ffff;
+            background-color: #f2f0f8;
             color: #2a2a2a;
         }
     </style>

@@ -4,14 +4,6 @@ namespace App\Controllers;
 
 class Recruitment extends BaseController
 {
-
-    public function index()
-    {
-        return view('recruitment/index', [
-            'title' => 'Home',
-        ]);
-    }
-
     public function summary()
     {
         return view('recruitment/summary', [

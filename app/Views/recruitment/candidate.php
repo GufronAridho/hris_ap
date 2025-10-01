@@ -8,10 +8,10 @@
             <div class="row align-items-stretch g-2">
 
                 <div class="col-md-4">
-                    <div class="card h-100 custom-card-breadcrumb custom-card-slim d-flex align-items-center justify-content-center">
+                    <div class="card h-100 custom-card-breadcrumb custom-card-slim d-flex align-items-left justify-content-center">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="<?= base_url("home/index"); ?>">Home</a></li>
-                            <li class="breadcrumb-item"><a href="<?= base_url("recruitment/index"); ?>">Recruitment</a></li>
+                            <li class="breadcrumb-item">Recruitment</li>
                             <li class="breadcrumb-item active">Candidate</li>
                         </ol>
                     </div>
@@ -66,8 +66,8 @@
             <div class="card shadow-sm rounded-3 custom-card-purple card-table">
                 <!-- Card Body with Table -->
                 <div class="card-body p-4">
-                    <table class="table table-bordered table-striped table-hover table-rounded" id="table_detail">
-                        <thead class="table-custom">
+                    <table class="table table-bordered table-striped table-hover table-custom" id="table_detail">
+                        <thead>
                             <tr>
                                 <th class="text-center">No</th>
                                 <th>Colomn1</th>
@@ -104,6 +104,12 @@
 </main>
 
 <style>
+    /* main.app-main {
+        background: url('<?= base_url("assets/img/silhouette-businesspeople-rushing-work.jpg"); ?>') no-repeat center center;
+        background-size: cover;
+        min-height: 100vh;
+    } */
+
     .custom-card-purple {
         background: linear-gradient(135deg, #800080, #7030a0);
         border: none;
@@ -112,25 +118,23 @@
         color: #fff;
     }
 
-    .card-button {
-        border-right: 4px solid #f8b310;
-        border-top: 3px solid #f8b310;
-    }
-
-    .card-table {
-        border-left: 3px solid #f8b310;
-        border-right: 3px solid #f8b310;
-        border-bottom: 4px solid #f8b310;
-    }
-
     .custom-card-breadcrumb {
         background: linear-gradient(135deg, #7030a0, #800080);
         border: none;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-        border-left: 4px solid #f8b310;
-        border-top: 3px solid #f8b310;
     }
+
+    /* .custom-card-purple,
+    .custom-card-breadcrumb,
+    .card-button,
+    .card-table {
+        background: rgba(128, 0, 128, 0.8);
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        color: #fff;
+    } */
 
     .custom-card-slim {
         padding: 0.4rem 0.8rem !important;
@@ -140,6 +144,7 @@
         background: transparent;
         margin-bottom: 0;
         font-size: 1.4rem;
+        color: #ffc107;
     }
 
     .breadcrumb a {
@@ -193,27 +198,27 @@
     }
 
     .btn-info .btn-text {
-        color: #0dcaf0;
+        color: #7030a0;
         border-left: 1px solid #0dcaf0;
     }
 
     .btn-success .btn-text {
-        color: #198754;
+        color: #7030a0;
         border-left: 1px solid #198754;
     }
 
     .btn-warning .btn-text {
-        color: #ffc107;
+        color: #7030a0;
         border-left: 1px solid #ffc107;
     }
 
     .btn-secondary .btn-text {
-        color: #6c757d;
+        color: #7030a0;
         border-left: 1px solid #6c757d;
     }
 
     .btn-danger .btn-text {
-        color: #dc3545;
+        color: #7030a0;
         border-left: 1px solid #dc3545;
     }
 
@@ -222,34 +227,33 @@
     }
 
     .btn-info .btn-icon {
-        background-color: #880fb3;
+        background-color: #0dcaf0;
     }
 
     .btn-success .btn-icon {
-        background-color: #880fb3;
+        background-color: #198754;
     }
 
     .btn-warning .btn-icon {
-        background-color: #880fb3;
+        background-color: #ffc107;
     }
 
     .btn-secondary .btn-icon {
-        background-color: #880fb3;
+        background-color: #6c757d;
     }
 
     .btn-danger .btn-icon {
-        background-color: #880fb3;
+        background-color: #dc3545;
     }
 
-    .table-rounded {
-        border-radius: 12px;
+    .table-custom {
         border: 1px solid #dee2e6;
         border-collapse: separate;
         border-spacing: 0;
         overflow: hidden;
     }
 
-    .table-rounded th {
+    .table-custom th {
         background-color: #ffc107 !important;
         color: #1e1e1f;
         text-align: center;
@@ -257,7 +261,7 @@
         border-radius: 0;
     }
 
-    .table-rounded td {
+    .table-custom td {
         border: 1px solid #dee2e6;
         border-radius: 0;
         vertical-align: middle;
@@ -288,7 +292,7 @@
     function initializeDataTable(tableId) {
         $('#' + tableId).DataTable({
             pageLength: 10,
-            lengthChange: false,
+            lengthChange: true,
             searching: true,
             ordering: true,
             scrollX: true,

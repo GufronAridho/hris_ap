@@ -13,6 +13,6 @@ class Auth extends BaseController
 
     public function login()
     {
-        return redirect()->to(base_url('home'));
+        return redirect()->to(base_url('home/index'));
     }
 }
