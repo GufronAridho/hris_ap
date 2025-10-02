@@ -26,6 +26,10 @@ $menu_items = Menu::$menus[$module] ?? [];
     <!-- Skip links will be dynamically added by accessibility.js -->
     <!-- Accessibility Features -->
     <meta name="supported-color-schemes" content="light dark" />
+
+    <meta name="csrf-token" content="<?= csrf_hash(); ?>">
+    <meta name="csrf-header" content="<?= csrf_token(); ?>">
+
     <link rel="preload" href="<?= base_url('dist/adminLte/css/adminlte.css'); ?>" as="style" />
 
     <!-- Fonts -->
@@ -110,7 +114,7 @@ $menu_items = Menu::$menus[$module] ?? [];
                             <i class="fas fa-question-circle me-1"></i> Help
                         </a>
 
-                        <a href="<?= base_url('auth/index') ?>" class="btn btn-sm btn-outline-warning rounded-pill layout-btn">
+                        <a href="<?= base_url('auth/logout') ?>" class="btn btn-sm btn-outline-warning rounded-pill layout-btn">
                             <i class="fas fa-sign-out-alt me-1"></i> Logout
                         </a>
                     </div>
@@ -261,6 +265,38 @@ $menu_items = Menu::$menus[$module] ?? [];
     <script src="<?= base_url('dist/plugins/DataTables/datatables.min.js') ?>"></script>
     <script src="<?= base_url('dist/plugins/select2-4.0.13/js/select2.full.min.js') ?>"></script>
     <script src="<?= base_url('dist/plugins/sweetalert2/dist/sweetalert2.all.min.js') ?>"></script>
+
+    <script>
+        $(function() {
+            // Before sending any AJAX request, attach CSRF
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    let csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    let csrfHeader = $('meta[name="csrf-header"]').attr('content');
+
+                    if (settings.type === 'POST' || settings.type === 'PUT' || settings.type === 'DELETE') {
+                        if (typeof settings.data === 'string') {
+                            settings.data += '&' + csrfHeader + '=' + csrfToken;
+                        } else if (typeof settings.data === 'object') {
+                            settings.data = settings.data || {};
+                            settings.data[csrfHeader] = csrfToken;
+                        }
+                    }
+                },
+                complete: function(xhr) {
+                    // If server sends new token in JSON, update it
+                    try {
+                        let response = JSON.parse(xhr.responseText);
+                        if (response.csrfHash) {
+                            $('meta[name="csrf-token"]').attr('content', response.csrfHash);
+                        }
+                    } catch (e) {
+                        // ignore non-JSON responses
+                    }
+                }
+            });
+        });
+    </script>
 
     <?= $this->renderSection('script'); ?>
     <!--end::Script-->

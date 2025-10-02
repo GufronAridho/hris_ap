@@ -77,35 +77,47 @@
                     </div>
 
                     <form action="<?= base_url("auth/login"); ?>" method="post">
+                        <?= csrf_field(); ?>
+                        <?php if (session()->getFlashdata('error')): ?>
+                            <div class="alert alert-danger">
+                                <?= session()->getFlashdata('error') ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (session()->getFlashdata('success')): ?>
+                            <div class="alert alert-success">
+                                <?= session()->getFlashdata('success') ?>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="input-group mb-3">
                             <div class="form-floating flex-grow-1">
-                                <input id="loginEmail" type="text" class="form-control bg-light bg-opacity-75" placeholder="Username">
-                                <label for="loginEmail">Username</label>
+                                <input id="username" name="username" type="text" class="form-control bg-light bg-opacity-75" placeholder="Username">
+                                <label for="username">Username</label>
                             </div>
                             <div class="input-group-text bg-light bg-opacity-75"><i class="fa fa-envelope"></i></div>
                         </div>
 
                         <div class="input-group mb-3">
                             <div class="form-floating flex-grow-1">
-                                <input id="loginPassword" type="password" class="form-control bg-light bg-opacity-75" placeholder="Password">
-                                <label for="loginPassword">Password</label>
+                                <input id="password" name="password" type="password" class="form-control bg-light bg-opacity-75" placeholder="Password">
+                                <label for="password">Password</label>
                             </div>
                             <div class="input-group-text bg-light bg-opacity-75"><i class="fa fa-lock"></i></div>
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
-                            <div class="form-check">
+                            <!-- <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="rememberMe">
                                 <label class="form-check-label" for="rememberMe">Remember Me</label>
                             </div>
-                            <a href="forgot-password.html" class="small text-decoration-none mt-2 mt-sm-0">Forgot Password?</a>
+                            <a href="forgot-password.html" class="small text-decoration-none mt-2 mt-sm-0">Forgot Password?</a> -->
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100 mb-3">Sign In</button>
                     </form>
 
                     <p class="text-center mb-0">
-                        <a href="register.html" class="text-decoration-none">Register a new membership</a>
+                        <a href="<?= base_url("auth/register"); ?>" class="text-decoration-none">Register an account</a>
                     </p>
                 </div>
             </div>
